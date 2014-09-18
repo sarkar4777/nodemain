@@ -19,6 +19,9 @@ exports.getUserDataTable = function getData (req, res) {
 				  if (error) {
 						console.error(error);
 				  } else {
+				  		for(var group in paginatedResults){
+						    paginatedResults[group].fullname = '<a href="/useredit?id=' + paginatedResults[group]._id + '">' + paginatedResults[group].fullname + '</a>';
+						}
 						console.log('{"records":'  + JSON.stringify(paginatedResults) + ',"queryRecordCount": ' + paginatedResults.length + ',"totalRecordCount": ' + itemCount + '}');
 						res.send('{"records":'  + JSON.stringify(paginatedResults) + ',"queryRecordCount": ' + paginatedResults.length + ',"totalRecordCount": ' + itemCount + '}');
 				  }
@@ -28,6 +31,9 @@ exports.getUserDataTable = function getData (req, res) {
 				  if (error) {
 						console.error(error);
 				  } else {
+				  		for(var group in paginatedResults){
+						    paginatedResults[group].fullname = '<a href="/useredit?id=' + paginatedResults[group]._id + '">' + paginatedResults[group].fullname + '</a>';
+						}
 						console.log('{"records":'  + JSON.stringify(paginatedResults) + ',"queryRecordCount": ' + paginatedResults.length + ',"totalRecordCount": ' + itemCount + '}');
 						res.send('{"records":'  + JSON.stringify(paginatedResults) + ',"queryRecordCount": ' + paginatedResults.length + ',"totalRecordCount": ' + itemCount + '}');
 				  }

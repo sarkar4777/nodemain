@@ -26,6 +26,7 @@ module.exports = {
 			});
 		}
     },
+    
     registration: function(req, res) {
 		if (req.body.email && req.body.password) {
 			models.User.findOne({ email: req.body.email, password: md5(req.body.password) }, function (err, docs) {
@@ -47,7 +48,8 @@ module.exports = {
 							phone: req.body.phone,
 							password: md5(req.body.password),
 							company: req.body.company,
-							userrole: req.body.type,
+							companytype: req.body.companytype,
+							userrole: req.body.userrole,
 							site: req.body.site,
 							category: req.body.category,
 							country: req.body.country,

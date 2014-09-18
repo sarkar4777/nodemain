@@ -12,10 +12,7 @@ module.exports = {
 					res.render('testpager', {paging: common.paginate(req.query.p,1,itemCount, 'test').render()});
 			  }
 		});
-    },
-    table : function (req, res) {
-		nav = common.navigation('dboard', 'admin');
-		res.render('userlist', {navigation : nav});
-	}
+    }
+   
 };
 

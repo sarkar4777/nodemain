@@ -8,6 +8,7 @@ var UserSchema = new Schema({
     email: String,
     password: String,
     company: String,
+    companytype: String,
     userrole: String,
     site: String,
     phone: String,
@@ -20,17 +21,20 @@ var UserSchema = new Schema({
 });
 
 var SessionSchema = new Schema({
+    userhash: String,
 	userid: String,
     fullname: String,
     email: String,
     password: String,
     company: String,
-    type: String,
+    companytype: String,
+    userrole: String,
     site: String,
     phone: String,
     category: String,
     country: String,
     address: String,
+    accountmanager: String,
     datetime : { type : Date, default: Date.now }
 });
 

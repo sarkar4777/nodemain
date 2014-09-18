@@ -14,10 +14,11 @@ module.exports = {
                     phone: '9703219317',
                     password: md5('sarkar01'),
                     company: 'tyroo',
+                    companytype: 'Firm',
                     userrole: 'admin',
                     site: 'www.tyroo.com',
-                    category: 'e-commerce',
-                    country: 'India',
+                    category: 'Tickets',
+                    country: 'IN',
                     address: 'SVG Media House',
                     superadmin: 'true'
                 });
@@ -30,10 +31,11 @@ module.exports = {
 						phone: '9703219317',
 						password: md5('sarkar01'),
 						company: 'tyroo',
+						companytype: 'Firm',
 						userrole: 'advertiser',
 						site: 'www.tyroo.com',
-						category: 'e-commerce',
-						country: 'India',
+						category: 'Tickets',
+						country: 'IN',
 						address: 'SVG Media House',
 						accountmanager: user._id
 					});
@@ -47,10 +49,11 @@ module.exports = {
 						phone: '9703219317',
 						password: md5('sarkar01'),
 						company: 'tyroo',
-						userrole: 'publisher',
+						companytype: 'Firm',
+						userrole: 'affiliate',
 						site: 'www.tyroo.com',
-						category: 'e-commerce',
-						country: 'India',
+						category: 'Tickets',
+						country: 'IN',
 						address: 'SVG Media House',
 						accountmanager: user._id
 					});

@@ -41,16 +41,16 @@ module.exports = {
 		var str = '';
 		switch(role) {
 			case 'admin':
-				str = htmlFactory.adminNavTemplate().replace(path, 'active');
+				str = htmlFactory.adminNavTemplate().replace('$' + path + '$', 'active');
 				break;
 			case 'advertiser':
-				str = htmlFactory.advertiserNavTemplate().replace(path, 'active');
+				str = htmlFactory.advertiserNavTemplate().replace('$' + path + '$', 'active');
 				break;
 			case 'affiliate':
-				str = htmlFactory.affiliateNavTemplate().replace(path, 'active');
+				str = htmlFactory.affiliateNavTemplate().replace('$' + path + '$', 'active');
 				break;	
 			default:
-				str = htmlFactory.adminNavTemplate().replace(path, 'active');
+				str = htmlFactory.adminNavTemplate().replace('$' + path + '$', 'active');
 		} 
 		return str;
 	}
