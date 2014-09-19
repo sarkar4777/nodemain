@@ -21,7 +21,7 @@ module.exports = {
 				} else {
 					nav = common.navigation('dboard', 'admin');
 					console.log(nav);
-					res.render('dashboard', {navigation : nav});
+					res.render('users', {navigation : nav});
 				}
 			});
 		}
