@@ -16,30 +16,33 @@ module.exports = {
     
     users : function (req, res) {
 		nav = common.navigation('users', 'admin');
-		res.render('userlist', {navigation : nav});
+		topStatus = common.topStatus(req.session.user);
+		res.render('userlist', {navigation : nav, topstatus : topStatus});
 	},
 	
 	useredit : function (req, res) {
 		nav = common.navigation('users', 'admin');
+		topStatus = common.topStatus(req.session.user);
 		if(req.query.id != null){
 		    models.User.findOne({ _id: req.query.id }, function (err, user) {
 				if (err) {
 					res.render('500', {});
 				}
 				if (user == null) {
-					res.render('users', {});
+					res.render('users', {navigation : nav, topstatus : topStatus});
 				} else {
-					nav = common.navigation('users', 'admin');
-					res.render('useredit', {navigation : nav , data : user});
+					res.render('useredit', {navigation : nav , data : user, topstatus : topStatus});
 				}
 			});
 		}else{
-		    res.render('users', {navigation : nav});    
+		    res.render('users', {navigation : nav, topstatus : topStatus});    
 		}
 	},
 	
 	usersave : function (req, res) {
 		nav = common.navigation('users', 'admin');
+		topStatus = common.topStatus(req.session.user);
+		
 		if(req.body.password.trim() != ''){
 		    models.User.findOne({ $and:[{ _id: req.query.id, password: req.body.password }]}, function (err, user) {
 				if (err) {
@@ -51,10 +54,9 @@ module.exports = {
         					res.render('500', {});
         				}
         				if (user == null) {
-        					res.render('users', {});
+        					res.render('users', { navigation : nav, topstatus : topStatus });
         				} else {
-        					nav = common.navigation('users', 'admin');
-        					res.render('useredit', {navigation : nav, data : user, error : 'Password mismatch !'});
+        					res.render('useredit', {navigation : nav, data : user, error : 'Password mismatch !', topstatus : topStatus});
         				}
         			});
 				} else {
@@ -73,8 +75,7 @@ module.exports = {
 					    if(err){
 					        res.render('500', {});
 					    } else {
-					        nav = common.navigation('users', 'admin');
-					        res.render('useredit', {navigation : nav, data : saveduser, message : 'User Updated.'});
+					        res.render('useredit', {navigation : nav, data : saveduser, message : 'User Updated.', topstatus : topStatus});
 					    }
 					});
 				}
@@ -86,7 +87,7 @@ module.exports = {
         			res.render('500', {});
         		}
         		if (user == null) {
-        			res.render('users', {});
+        			res.render('users', {navigation : nav, topstatus : topStatus});
         		} else {
         		    user.email = req.body.email;
         			user.fullname = req.body.name;
@@ -103,8 +104,7 @@ module.exports = {
         			    if(err){
         				    res.render('500', {});
         				} else {
-        				    nav = common.navigation('users', 'admin');
-        				    res.render('useredit', {navigation : nav, data : saveduser, message : 'User Updated.'});
+        				    res.render('useredit', {navigation : nav, data : saveduser, message : 'User Updated.', topstatus : topStatus});
         				}
         			});
         		}

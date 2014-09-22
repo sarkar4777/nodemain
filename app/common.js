@@ -53,5 +53,21 @@ module.exports = {
 				str = htmlFactory.adminNavTemplate().replace('$' + path + '$', 'active');
 		} 
 		return str;
+	},
+	
+	requireAuth: function(req, res, next){
+	    if(!req.isAuthenticated()){
+	    	req.session.messages = "You need to login to view this page";
+	    	res.redirect('/');
+	    }
+	  	next();
+	},
+	
+	topStatus: function(user){
+		var find = '$fullname$';
+		find = find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+		var re = new RegExp(find, 'g');
+		var str = htmlFactory.topStatus().replace('$id$', user._id).replace('$userrole$', user.userrole).replace(re, user.fullname).replace('$date$', user.datetime);
+		return str;
 	}
 };

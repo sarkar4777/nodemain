@@ -2,18 +2,23 @@ var user = require('../controllers/user');
 var logreg = require('../controllers/loginregistration');    
 var test = require('../controllers/testpagination'); 
 var ajax = require('../controllers/ajax'); 
+var common = require('./common');
 
 module.exports.initialize = function(app) {
 	app.get('/', logreg.index);
-	app.get('/register', logreg.register);
 	app.post('/login', logreg.login);
+	app.get('/register', logreg.register);
 	app.post('/registeruser', logreg.registration);
-	app.get('/test', test.index);
-	app.get('/users', user.users);
-	app.get('/useredit', user.useredit);
-	app.post('/usersave', user.usersave);
+	app.get('/users', common.requireAuth, user.users);
+	app.get('/useredit', common.requireAuth, user.useredit);
+	app.post('/usersave', common.requireAuth, user.usersave);
+	app.get('/logout', logreg.logout);
+	
+	//AJAX Specific routes
 	app.get('/get/user', ajax.getUserDataTable);
 	
+	/*
+	//Error Handling routes
 	app.get('/404', function(req, res, next){
 		next();
 	});
@@ -23,7 +28,7 @@ module.exports.initialize = function(app) {
 		next(err);
 	});
 	app.get('/500', function(req, res, next){
-		next(new Error('keyboard cat!'));
+		next(new Error('Server Error!!'));
 	});
 	
 	app.use(function(req, res, next){
@@ -46,5 +51,5 @@ module.exports.initialize = function(app) {
 		res.status(err.status || 500);
 		res.render('500', {});
 	});
-
+	*/
 };
